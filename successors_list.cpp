@@ -13,7 +13,6 @@ forward_list<int> succList;                       // list of successors
 forward_list<int>::iterator currentVertex;        // pointer in list
 
 void SuccListCreate(int VertexCount) {
-
     for (int row = 0; row < VertexCount; ++row) {
         // setting list's iterator on beginning
         currentVertex = succList.begin();
