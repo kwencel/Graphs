@@ -32,7 +32,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
             ++linksCount;
         }
     }
-
+/*
     adjMatrix[0][0] = 0;
     adjMatrix[1][0] = 0;
     adjMatrix[2][0] = 1;
@@ -69,7 +69,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
     adjMatrix[3][5] = 0;
     adjMatrix[4][5] = 1;
     adjMatrix[5][5] = 0;
-    // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
+    // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes */
 }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {

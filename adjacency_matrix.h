@@ -10,7 +10,7 @@ class AdjacencyMatrix {
 private:
     int vertexCount;
     int saturation;
-
+    vector<vector<int>> adjMatrix;
     vector<int> adjInDegArray;
     forward_list<int> visited;
     queue<int> BFSqueue;
@@ -24,7 +24,6 @@ private:
 
 public:
     AdjacencyMatrix(int vertexCount = 6, int saturation = 50);
-    vector<vector<int>> adjMatrix;
 
     void traversalDFS(int vertex);
     void sortDFS(int vertex);
