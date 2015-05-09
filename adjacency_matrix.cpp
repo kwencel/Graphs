@@ -3,7 +3,6 @@
 #include <forward_list>
 #include <queue>
 #include <algorithm>
-#include "adjacency_matrix.h"
 #include "utils.h"
 using namespace std;
 
@@ -11,18 +10,17 @@ vector<vector<int>> adjMatrix;
 forward_list<int> visited;
 queue<int> BFSqueue;
 
-
 /* The vector of vector (matrix) indexing is the following:
  * Matrix[i][j]
  * i - index of a column
  * j - index of a row
  */
 
-void AdjMatrixCreate(int vertexCount) {     // Generate acyclic V x V matrix with 50% saturation
+void AdjMatrixCreate(int vertexCount, int saturation) {     // Generate acyclic V x V matrix with 50% saturation
     // Resize the vector to be V x V matrix
     adjMatrix.resize(vertexCount, vector<int>(vertexCount, 0));   // Casting suggested by IDE
     // Calculate the maximum number of edges/links (ones in the matrix)
-    int linksCountMax = (vertexCount * (vertexCount - 1)) / 4;
+    int linksCountMax = ((vertexCount * (vertexCount - 1)) / 2) * saturation/100;
     int linksCount = 0;
     // Filling the upper triangle with ones (1) in random positions
     while (linksCount < linksCountMax) {
@@ -37,7 +35,7 @@ void AdjMatrixCreate(int vertexCount) {     // Generate acyclic V x V matrix wit
             ++linksCount;
         }
     }
-    
+
     adjMatrix[0][0] = 0;
     adjMatrix[1][0] = 0;
     adjMatrix[2][0] = 1;
@@ -75,11 +73,36 @@ void AdjMatrixCreate(int vertexCount) {     // Generate acyclic V x V matrix wit
     adjMatrix[4][5] = 1;
     adjMatrix[5][5] = 0;
     // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
-    
+
 }
 
 bool AdjMatrixWasVertexVisited(int vertex) {
     return !(find(visited.begin(), visited.end(), vertex) == visited.end());
+}
+
+void AdjMatrixDFSTraversalRecur(int vertex) {
+    if (AdjMatrixWasVertexVisited(vertex)) {
+        return;
+    } else {
+        cout << vertex;
+        visited.push_front(vertex);
+        for (int i = 0; i < adjMatrix.size(); ++i) {
+            if (adjMatrix[i][vertex] == 1) {
+                AdjMatrixDFSTraversalRecur(i);
+            }
+        }
+    }
+}
+
+void AdjMatrixDFSTraversal(int vertex) {
+    int firstVertex = vertex;
+    for (vertex; vertex < adjMatrix.size(); ++vertex) {
+        AdjMatrixDFSTraversalRecur(vertex);
+    }
+    for (int i = 0; i < firstVertex; ++i) {
+        AdjMatrixDFSTraversalRecur(i);
+    }
+    visited.clear();
 }
 
 void AdjMatrixDFSSortRecur(int vertex) {
@@ -95,8 +118,12 @@ void AdjMatrixDFSSortRecur(int vertex) {
 }
 
 void AdjMatrixDFSSort(int vertex) {
+    int firstVertex = vertex;
     for (vertex; vertex < adjMatrix.size(); ++vertex) {
         AdjMatrixDFSSortRecur(vertex);
+    }
+    for (int i = 0; i < firstVertex; ++i) {
+        AdjMatrixDFSSortRecur(i);
     }
     for (int item :visited) {
         cout << item;
@@ -104,7 +131,7 @@ void AdjMatrixDFSSort(int vertex) {
     visited.clear();
 }
 
-void AdjMatrixBFSSortIter(int vertex) {
+void AdjMatrixBFSTraversalIter(int vertex) {
 	BFSqueue.push(vertex);
 	visited.push_front(vertex);
 	while (!BFSqueue.empty()) {
@@ -122,13 +149,54 @@ void AdjMatrixBFSSortIter(int vertex) {
 	}
 }
 
-void AdjMatrixBFSSort(int vertex) {
+void AdjMatrixBFSTraversal(int vertex) {
+    int firstVertex = vertex;
     for (vertex; vertex < adjMatrix.size(); ++vertex) {
         if (!AdjMatrixWasVertexVisited(vertex)) {
-            AdjMatrixBFSSortIter(vertex);
+            AdjMatrixBFSTraversalIter(vertex);
+        }
+    }
+    for (int i = 0; i < firstVertex; ++i) {
+        if (!AdjMatrixWasVertexVisited(i)) {
+            AdjMatrixBFSTraversalIter(i);
         }
     }
     visited.clear();
+}
+
+vector<int> AdjMatrixReturnInDegMatrix() {
+    vector<int> adjInDegMatrix;
+    adjInDegMatrix.resize(adjMatrix.size());
+    for (int i = 0; i < adjMatrix.size(); ++i) {
+        int vertexInDeg = 0;
+        for (int j = 0; j < adjMatrix.size(); ++j) {
+            // Calculate in(i) degree [i - current vertex]
+            if (adjMatrix[i][j] == 1) {
+                ++vertexInDeg;
+            }
+        }
+        adjInDegMatrix[i] = vertexInDeg;
+    }
+    return adjInDegMatrix;
+}
+
+void AdjMatrixBFSSort(int vertex) {
+    vector<int> adjInDegMatrix = AdjMatrixReturnInDegMatrix();
+    while ( (find_if(adjInDegMatrix.begin(), adjInDegMatrix.end(), GreaterThanZero)) != ( adjInDegMatrix.end()) ) {
+        for (vertex = 0; vertex < adjInDegMatrix.size(); ++vertex) {
+            // If the vertex has "in" degree == 0
+            if (adjInDegMatrix[vertex] == 0) {
+                // Remove all links of this vertex
+                for (int i = 0; i < adjMatrix.size(); ++i) {
+                    if (adjMatrix[i][vertex] == 1) {
+                        adjInDegMatrix[i] -= 1;
+                        adjInDegMatrix[vertex] -= 1;
+                    }
+                }
+                cout << vertex;
+            }
+        }
+    }
 }
 
 void AdjMatrixPrint() {
