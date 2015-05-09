@@ -2,9 +2,10 @@
 #include <vector>
 #include <forward_list>
 #include <algorithm>
+#include "adjacency_matrix.h"
 using namespace std;
 
-extern vector <vector<int>> adjMatrix;
+extern AdjacencyMatrix matrix;
 
 vector<forward_list<int>> adjList;                // vector of lists
 forward_list<int> succList;                       // list of successors
@@ -16,6 +17,8 @@ void SuccListCreate(int vertexCount) {
         currentVertex = succList.begin();
         // adding main vertex to list
         currentVertex = succList.insert_after(succList.before_begin(), row);
+        // accessing the adjacency matrix and making a temporary copy
+        vector<vector<int>> adjMatrix = matrix.getAdjMatrix();
         for (int column = 0; column < vertexCount; ++column) {
             if ((adjMatrix[column][row]) == 1) {
                 // adding vertex to list

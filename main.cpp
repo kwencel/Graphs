@@ -1,24 +1,25 @@
 #include <iostream>
 #include "adjacency_matrix.h"
 #include "successors_list.h"
-
 using namespace std;
 
+AdjacencyMatrix matrix;
+
 int main() {
-    AdjMatrixCreate(6,50);
-    //AdjMatrixPrint();
+    matrix.print();
+    cout << endl;
     cout << "DFS Sort" << endl;
-	AdjMatrixDFSSort(0);
+	matrix.sortDFS(0);
     cout << endl;
     cout << "BFS Sort" << endl;
-    AdjMatrixBFSSort(0);
+    matrix.sortBFS(0);
     cout << endl;
     cout << "DFS Traversal" << endl;
-    AdjMatrixDFSTraversal(0);
+    matrix.traversalDFS(0);
     cout << endl;
     cout << "BFS Traversal" << endl;
-    AdjMatrixBFSTraversal(0);
-    cout << endl;
+    matrix.traversalBFS(0);
+    cout << endl << endl;
     SuccListCreate(6);
     SuccListPrint();
     return 0;
