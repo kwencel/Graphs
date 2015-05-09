@@ -3,15 +3,12 @@
 #include <forward_list>
 #include <algorithm>
 #include "adjacency_matrix.h"
+#include "successors_list.h"
 using namespace std;
 
 extern AdjacencyMatrix matrix;
 
-vector<forward_list<int>> adjList;                // vector of lists
-forward_list<int> succList;                       // list of successors
-forward_list<int>::iterator currentVertex;        // pointer in list
-
-void SuccListCreate(int vertexCount) {
+SuccessorsList::SuccessorsList(int vertexCount) {
     for (int row = 0; row < vertexCount; ++row) {
         // setting list's iterator on beginning
         currentVertex = succList.begin();
@@ -32,7 +29,7 @@ void SuccListCreate(int vertexCount) {
     }
 }
 
-void SuccListPrint() {
+void SuccessorsList::print() {
     cout << "--------- SUCCESSORS LIST ---------- " << endl;
     cout << "------------------------------------ " << endl;
     for (int j = 0; j < adjList.size(); ++j) {
