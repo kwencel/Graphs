@@ -4,6 +4,7 @@
 using namespace std;
 
 AdjacencyMatrix matrix;
+SuccessorsList list;
 
 int main() {
     matrix.print();
@@ -20,7 +21,9 @@ int main() {
     cout << "BFS Traversal" << endl;
     matrix.traversalBFS(0);
     cout << endl << endl;
-    SuccListCreate(6);
-    SuccListPrint();
+
+
+    SuccessorsList();
+    list.print();
     return 0;
 }
