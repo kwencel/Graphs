@@ -11,3 +11,11 @@ int RandomBetween(int begin, int end) {
     uniform_int_distribution<> range(begin,end);    // Define the range
     return (range(eng));
 }
+
+bool GreaterThanZero(int number) {
+    if (number > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
