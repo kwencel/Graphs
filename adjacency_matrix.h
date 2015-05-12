@@ -19,7 +19,7 @@ private:
     void DFSTraversalRecur(int vertex);
     void DFSSortRecur(int vertex);
     void BFSTraversalIter(int vertex);
-    vector<int> returnInDegArray();
+    vector<int> createInDegArray();
 
 
 public:
@@ -32,6 +32,7 @@ public:
     void print();
     int getSize();
     int getSaturation();
+    vector<int> getInDegArray();
     vector<vector<int>> getAdjMatrix();
 };
 

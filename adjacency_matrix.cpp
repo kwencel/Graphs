@@ -32,7 +32,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
             ++linksCount;
         }
     }
-/*
+
     adjMatrix[0][0] = 0;
     adjMatrix[1][0] = 0;
     adjMatrix[2][0] = 1;
@@ -69,7 +69,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
     adjMatrix[3][5] = 0;
     adjMatrix[4][5] = 1;
     adjMatrix[5][5] = 0;
-    // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes */
+    // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
 }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
@@ -120,8 +120,7 @@ void AdjacencyMatrix::BFSTraversalIter(int vertex) {
     }
 }
 
-vector<int> AdjacencyMatrix::returnInDegArray() {
-    vector<int> adjInDegArray;
+vector<int> AdjacencyMatrix::createInDegArray() {
     adjInDegArray.resize(adjMatrix.size());
     for (int i = 0; i < adjMatrix.size(); ++i) {
         int vertexInDeg = 0;
@@ -177,7 +176,7 @@ void AdjacencyMatrix::traversalBFS(int vertex) {
 }
 
 void AdjacencyMatrix::sortBFS(int vertex) {
-    adjInDegArray = returnInDegArray();
+    createInDegArray();
     while ((find_if(adjInDegArray.begin(), adjInDegArray.end(), GreaterThanZero)) != (adjInDegArray.end())) {
         for (vertex = 0; vertex < adjInDegArray.size(); ++vertex) {
             // If the vertex has "in" degree == 0
@@ -219,4 +218,6 @@ vector<vector<int>> AdjacencyMatrix::getAdjMatrix() {
 }
 
 
-
+vector<int> AdjacencyMatrix::getInDegArray() {
+    return createInDegArray();
+}

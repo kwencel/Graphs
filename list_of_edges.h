@@ -6,11 +6,20 @@ using namespace std;
 
 class ListOfEdges {
 private:
+    int vertexCount;
     vector<vector<int>> edgeList;      //vector of lists
-    vector<int> edge;
+    vector<int> edgeInDegArray;
+    forward_list<int> visited;
+
+    bool wasVertexVisited(int vertex);
+    void DFSSortRecur(int vertex);
+    vector<int> createInDegArray();
 
 public:
-    ListOfEdges(int vertexCount = 6);
+    ListOfEdges();
+    void sortDFS(int vertex);
+    void sortBFS(int vertex);
     void print();
+    vector<int> getInDegArray();
 };
 #endif //GRAPHS_LIST_OF_EDGES_H
