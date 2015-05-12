@@ -1,29 +1,31 @@
 #include <iostream>
 #include "adjacency_matrix.h"
 #include "successors_list.h"
+#include "list_of_edges.h"
 using namespace std;
 
 AdjacencyMatrix matrix;
 SuccessorsList list;
+ListOfEdges edges;
 
 int main() {
     matrix.print();
-    cout << endl;
-    cout << "DFS Sort" << endl;
+    cout << endl << "DFS Sort" << endl;
 	matrix.sortDFS(0);
-    cout << endl;
-    cout << "BFS Sort" << endl;
+    cout << endl << "BFS Sort" << endl;
     matrix.sortBFS(0);
-    cout << endl;
-    cout << "DFS Traversal" << endl;
+    cout << endl << "DFS Traversal" << endl;
     matrix.traversalDFS(0);
-    cout << endl;
-    cout << "BFS Traversal" << endl;
+    cout << endl << "BFS Traversal" << endl;
     matrix.traversalBFS(0);
     cout << endl << endl;
-
-
-    SuccessorsList();
     list.print();
+    cout << endl;
+    edges.print();
+    cout << endl << "DFS Sort" << endl;
+    edges.sortDFS(0);
+    cout << endl << "BFS Sort" << endl;
+    edges.sortBFS(0);
+
     return 0;
 }
