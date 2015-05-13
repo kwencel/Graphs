@@ -8,14 +8,21 @@ using namespace std;
 class SuccessorsList {
 private:
     int vertexCount;
-    vector<forward_list<int>> adjList;                // vector of lists
-    forward_list<int> succList;                       // list of successors
-    forward_list<int>::iterator currentVertex;        // pointer in list
+    vector<forward_list<int>> adjList;
+    forward_list<int> succList;
+    forward_list<int> visited;
+    vector<int> listInDegArray;
+
+    void DFSSortRecur(int vertex);
+    bool wasVertexVisited(int vertex);
+    vector<int> createInDegArray();
 
 public:
     SuccessorsList(int vertexCout = 6);
-
+    void sortDFS(int vertex);
+    void sortBFS();
     void print();
+
 };
 
 #endif //GRAPHS_SUCCESSORS_LIST_H

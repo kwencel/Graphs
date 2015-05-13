@@ -175,10 +175,10 @@ void AdjacencyMatrix::traversalBFS(int vertex) {
     visited.clear();
 }
 
-void AdjacencyMatrix::sortBFS(int vertex) {
+void AdjacencyMatrix::sortBFS() {
     createInDegArray();
     while ((find_if(adjInDegArray.begin(), adjInDegArray.end(), GreaterThanZero)) != (adjInDegArray.end())) {
-        for (vertex = 0; vertex < adjInDegArray.size(); ++vertex) {
+        for (int vertex = 0; vertex < adjInDegArray.size(); ++vertex) {
             // If the vertex has "in" degree == 0
             if (adjInDegArray[vertex] == 0) {
                 // Remove all links of this vertex
