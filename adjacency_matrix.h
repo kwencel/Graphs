@@ -21,14 +21,12 @@ private:
     void BFSTraversalIter(int vertex);
     vector<int> createInDegArray();
 
-
 public:
     AdjacencyMatrix(int vertexCount = 6, int saturation = 50);
-
     void traversalDFS(int vertex);
     void sortDFS(int vertex);
     void traversalBFS(int vertex);
-    void sortBFS(int vertex);
+    void sortBFS();
     void print();
     int getSize();
     int getSaturation();
