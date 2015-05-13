@@ -69,10 +69,10 @@ void ListOfEdges::sortDFS(int vertex) {
     visited.clear();
 }
 
-void ListOfEdges::sortBFS(int vertex) {
+void ListOfEdges::sortBFS() {
     createInDegArray();
     while ((find_if(edgeInDegArray.begin(), edgeInDegArray.end(), GreaterThanZero)) != (edgeInDegArray.end())) {
-        for (vertex = 0; vertex < edgeInDegArray.size(); ++vertex) {
+        for (int vertex = 0; vertex < edgeInDegArray.size(); ++vertex) {
             // If the vertex has "in" degree == 0
             if (edgeInDegArray[vertex] == 0) {
                 // Remove all links of this vertex
@@ -93,7 +93,7 @@ void ListOfEdges::print() {
     cout << "--------- LIST OF EDGES ------------ " << endl;
     cout << "------------------------------------ " << endl;
     cout << "Edge   Out In\n";
-    for (int j=0; j < edgeList.size(); ++j) {
+    for (int j = 0; j < edgeList.size(); ++j) {
         cout << j << "\t";
         for (int item: edgeList[j]) {
             cout << item << "  ";
@@ -102,7 +102,10 @@ void ListOfEdges::print() {
     }
 }
 
-
 vector<int> ListOfEdges::getInDegArray() {
     return createInDegArray();
+}
+
+int ListOfEdges::getSize() {
+    return vertexCount;
 }
