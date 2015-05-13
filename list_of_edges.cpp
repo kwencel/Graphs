@@ -93,7 +93,7 @@ void ListOfEdges::print() {
     cout << "--------- LIST OF EDGES ------------ " << endl;
     cout << "------------------------------------ " << endl;
     cout << "Edge   Out In\n";
-    for (int j=0; j < edgeList.size(); ++j) {
+    for (int j = 0; j < edgeList.size(); ++j) {
         cout << j << "\t";
         for (int item: edgeList[j]) {
             cout << item << "  ";
@@ -104,4 +104,8 @@ void ListOfEdges::print() {
 
 vector<int> ListOfEdges::getInDegArray() {
     return createInDegArray();
+}
+
+int ListOfEdges::getSize() {
+    return vertexCount;
 }

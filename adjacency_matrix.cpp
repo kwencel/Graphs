@@ -70,54 +70,11 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
     adjMatrix[4][5] = 1;
     adjMatrix[5][5] = 0;
     // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
-}
+
+ }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
     return !(find(visited.begin(), visited.end(), vertex) == visited.end());
-}
-
-void AdjacencyMatrix::DFSTraversalRecur(int vertex) {
-    if (wasVertexVisited(vertex)) {
-        return;
-    } else {
-        cout << vertex;
-        visited.push_front(vertex);
-        for (int i = 0; i < adjMatrix.size(); ++i) {
-            if (adjMatrix[i][vertex] == 1) {
-                DFSTraversalRecur(i);
-            }
-        }
-    }
-}
-
-void AdjacencyMatrix::DFSSortRecur(int vertex) {
-    if (wasVertexVisited(vertex)) {
-        return;
-    }
-    for (int i = 0; i < adjMatrix.size(); ++i) {
-        if (adjMatrix[i][vertex] == 1) {
-            DFSSortRecur(i);
-        }
-    }
-    visited.push_front(vertex);
-}
-
-void AdjacencyMatrix::BFSTraversalIter(int vertex) {
-    BFSqueue.push(vertex);
-    visited.push_front(vertex);
-    while (!BFSqueue.empty()) {
-        vertex = BFSqueue.front();
-        BFSqueue.pop();
-        cout << vertex;
-        for (int i = 0; i < adjMatrix.size(); ++i) {
-            if ((adjMatrix[i][vertex] == 0) || (wasVertexVisited(i))) {
-                continue;
-            } else {
-                BFSqueue.push(i);
-                visited.push_front(i);
-            }
-        }
-    }
 }
 
 vector<int> AdjacencyMatrix::createInDegArray() {
@@ -135,15 +92,16 @@ vector<int> AdjacencyMatrix::createInDegArray() {
     return adjInDegArray;
 }
 
-void AdjacencyMatrix::traversalDFS(int vertex) {
-    int firstVertex = vertex;
-    for (vertex; vertex < adjMatrix.size(); ++vertex) {
-        DFSTraversalRecur(vertex);
+void AdjacencyMatrix::DFSSortRecur(int vertex) {
+    if (wasVertexVisited(vertex)) {
+        return;
     }
-    for (int i = 0; i < firstVertex; ++i) {
-        DFSTraversalRecur(i);
+    for (int i = 0; i < adjMatrix.size(); ++i) {
+        if (adjMatrix[i][vertex] == 1) {
+            DFSSortRecur(i);
+        }
     }
-    visited.clear();
+    visited.push_front(vertex);
 }
 
 void AdjacencyMatrix::sortDFS(int vertex) {
@@ -160,17 +118,27 @@ void AdjacencyMatrix::sortDFS(int vertex) {
     visited.clear();
 }
 
-void AdjacencyMatrix::traversalBFS(int vertex) {
-    int firstVertex = vertex;
-    for (vertex; vertex < adjMatrix.size(); ++vertex) {
-        if (!wasVertexVisited(vertex)) {
-            BFSTraversalIter(vertex);
+void AdjacencyMatrix::DFSTraversalRecur(int vertex) {
+    if (wasVertexVisited(vertex)) {
+        return;
+    } else {
+        cout << vertex;
+        visited.push_front(vertex);
+        for (int i = 0; i < adjMatrix.size(); ++i) {
+            if (adjMatrix[i][vertex] == 1) {
+                DFSTraversalRecur(i);
+            }
         }
     }
+}
+
+void AdjacencyMatrix::traversalDFS(int vertex) {
+    int firstVertex = vertex;
+    for (vertex; vertex < adjMatrix.size(); ++vertex) {
+        DFSTraversalRecur(vertex);
+    }
     for (int i = 0; i < firstVertex; ++i) {
-        if (!wasVertexVisited(i)) {
-            BFSTraversalIter(i);
-        }
+        DFSTraversalRecur(i);
     }
     visited.clear();
 }
@@ -192,6 +160,39 @@ void AdjacencyMatrix::sortBFS() {
             }
         }
     }
+}
+
+void AdjacencyMatrix::BFSTraversalIter(int vertex) {
+    BFSqueue.push(vertex);
+    visited.push_front(vertex);
+    while (!BFSqueue.empty()) {
+        vertex = BFSqueue.front();
+        BFSqueue.pop();
+        cout << vertex;
+        for (int i = 0; i < adjMatrix.size(); ++i) {
+            if ((adjMatrix[i][vertex] == 0) || (wasVertexVisited(i))) {
+                continue;
+            } else {
+                BFSqueue.push(i);
+                visited.push_front(i);
+            }
+        }
+    }
+}
+
+void AdjacencyMatrix::traversalBFS(int vertex) {
+    int firstVertex = vertex;
+    for (vertex; vertex < adjMatrix.size(); ++vertex) {
+        if (!wasVertexVisited(vertex)) {
+            BFSTraversalIter(vertex);
+        }
+    }
+    for (int i = 0; i < firstVertex; ++i) {
+        if (!wasVertexVisited(i)) {
+            BFSTraversalIter(i);
+        }
+    }
+    visited.clear();
 }
 
 void AdjacencyMatrix::print() {
@@ -216,7 +217,6 @@ int AdjacencyMatrix::getSaturation() {
 vector<vector<int>> AdjacencyMatrix::getAdjMatrix() {
     return adjMatrix;
 }
-
 
 vector<int> AdjacencyMatrix::getInDegArray() {
     return createInDegArray();
