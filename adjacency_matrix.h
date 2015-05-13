@@ -8,27 +8,25 @@ using namespace std;
 
 class AdjacencyMatrix {
 private:
-    int vertexCount;
-    int saturation;
     vector<vector<int>> adjMatrix;
     vector<int> adjInDegArray;
     forward_list<int> visited;
     queue<int> BFSqueue;
+    int vertexCount;
+    int saturation;
 
     bool wasVertexVisited(int vertex);
-    void DFSTraversalRecur(int vertex);
     void DFSSortRecur(int vertex);
+    void DFSTraversalRecur(int vertex);
     void BFSTraversalIter(int vertex);
     vector<int> createInDegArray();
 
-
 public:
     AdjacencyMatrix(int vertexCount = 6, int saturation = 50);
-
-    void traversalDFS(int vertex);
     void sortDFS(int vertex);
+    void traversalDFS(int vertex);
+    void sortBFS();
     void traversalBFS(int vertex);
-    void sortBFS(int vertex);
     void print();
     int getSize();
     int getSaturation();

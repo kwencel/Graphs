@@ -7,15 +7,22 @@ using namespace std;
 
 class SuccessorsList {
 private:
+    vector<forward_list<int>> adjList;
+    vector<int> listInDegArray;
+    forward_list<int> visited;
     int vertexCount;
-    vector<forward_list<int>> adjList;                // vector of lists
-    forward_list<int> succList;                       // list of successors
-    forward_list<int>::iterator currentVertex;        // pointer in list
+
+    bool wasVertexVisited(int vertex);
+    void DFSSortRecur(int vertex);
+    vector<int> createInDegArray();
 
 public:
-    SuccessorsList(int vertexCout = 6);
-
+    SuccessorsList();
+    void sortDFS(int vertex);
+    void sortBFS();
     void print();
+    int getSize();
+    vector<int> getInDegArray();
 };
 
 #endif //GRAPHS_SUCCESSORS_LIST_H
