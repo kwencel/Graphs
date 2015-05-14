@@ -35,7 +35,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
  }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
-    return !(find(visited.begin(), visited.end(), vertex) == visited.end());
+    return (find(visited.begin(), visited.end(), vertex) != visited.end());
 }
 
 vector<int> AdjacencyMatrix::createInDegArray() {
