@@ -6,11 +6,9 @@
 #include "utils.h"
 using namespace std;
 
-extern AdjacencyMatrix matrix;
-
-ListOfEdges::ListOfEdges() {
-    vertexCount = matrix.getSize();
-    vector<vector<int>> adjMatrix = matrix.getAdjMatrix();
+ListOfEdges::ListOfEdges(AdjacencyMatrix Matrix) {
+    vertexCount = Matrix.getSize();
+    vector<vector<int>> adjMatrix = Matrix.getAdjMatrix();
     vector<int> edge;
     for (int row = 0; row < vertexCount; ++row) {
         for (int column = 0; column < vertexCount; ++column) {
@@ -63,9 +61,9 @@ void ListOfEdges::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    for (int item :visited) {
-        cout << item;
-    }
+    //for (int item :visited) {
+    //    cout << item;
+    //}
     visited.clear();
 }
 
@@ -83,7 +81,7 @@ void ListOfEdges::sortBFS() {
                         edgeList[edge].clear();
                     }
                 }
-                cout << vertex;
+                //cout << vertex;
             }
         }
     }
