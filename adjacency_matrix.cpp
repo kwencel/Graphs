@@ -32,7 +32,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
             ++linksCount;
         }
     }
-    /*
+
     adjMatrix[0][0] = 0;
     adjMatrix[1][0] = 0;
     adjMatrix[2][0] = 1;
@@ -70,7 +70,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
     adjMatrix[4][5] = 1;
     adjMatrix[5][5] = 0;
     // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
-    */
+
  }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
@@ -112,9 +112,9 @@ void AdjacencyMatrix::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    //for (int item :visited) {
-    //    cout << item;
-    //}
+    for (int item :visited) {
+        cout << item;
+    }
     visited.clear();
 }
 
@@ -156,7 +156,7 @@ void AdjacencyMatrix::sortBFS() {
                         adjInDegArray[vertex] -= 1;
                     }
                 }
-                //cout << vertex;
+                cout << vertex;
             }
         }
     }
