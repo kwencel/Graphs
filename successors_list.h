@@ -17,7 +17,7 @@ private:
     vector<int> createInDegArray();
 
 public:
-    SuccessorsList(AdjacencyMatrix Matrix);
+    SuccessorsList();
     void sortDFS(int vertex);
     void sortBFS();
     void print();
