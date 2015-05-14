@@ -8,17 +8,16 @@
 
 using namespace std;
 
-extern AdjacencyMatrix matrix;
 
-SuccessorsList::SuccessorsList() {
-    this->vertexCount = matrix.getSize();
+SuccessorsList::SuccessorsList(AdjacencyMatrix Matrix) {
+    this->vertexCount = Matrix.getSize();
     forward_list<int> succList;
     forward_list<int>::iterator currentVertex;
     for (int row = 0; row < vertexCount; ++row) {
         // Setting list's iterator on beginning
         currentVertex = succList.before_begin();
         // Accessing the adjacency matrix and making a temporary copy
-        vector<vector<int>> adjMatrix = matrix.getAdjMatrix();
+        vector<vector<int>> adjMatrix = Matrix.getAdjMatrix();
         for (int column = 0; column < vertexCount; ++column) {
             if ((adjMatrix[column][row]) == 1) {
                 // Adding vertex to list
@@ -71,9 +70,9 @@ void SuccessorsList::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    for (int item :visited) {
-        cout << item;
-    }
+    //for (int item :visited) {
+    //    cout << item;
+    //}
     visited.clear();
 }
 
@@ -88,7 +87,7 @@ void SuccessorsList::sortBFS() {
                     listInDegArray[currentSuccessor] -= 1;
                     listInDegArray[vertex] -= 1;
                 }
-                cout << vertex;
+                //cout << vertex;
             }
         }
     }
