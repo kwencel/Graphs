@@ -32,45 +32,6 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
             ++linksCount;
         }
     }
-    /*
-    adjMatrix[0][0] = 0;
-    adjMatrix[1][0] = 0;
-    adjMatrix[2][0] = 1;
-    adjMatrix[3][0] = 0;
-    adjMatrix[4][0] = 0;
-    adjMatrix[5][0] = 0;
-    adjMatrix[0][1] = 1;
-    adjMatrix[1][1] = 0;
-    adjMatrix[2][1] = 1;
-    adjMatrix[3][1] = 0;
-    adjMatrix[4][1] = 0;
-    adjMatrix[5][1] = 0;
-    adjMatrix[0][2] = 0;
-    adjMatrix[1][2] = 0;
-    adjMatrix[2][2] = 0;
-    adjMatrix[3][2] = 0;
-    adjMatrix[4][2] = 0;
-    adjMatrix[5][2] = 0;
-    adjMatrix[0][3] = 1;
-    adjMatrix[1][3] = 1;
-    adjMatrix[2][3] = 0;
-    adjMatrix[3][3] = 0;
-    adjMatrix[4][3] = 1;
-    adjMatrix[5][3] = 0;
-    adjMatrix[0][4] = 0;
-    adjMatrix[1][4] = 1;
-    adjMatrix[2][4] = 1;
-    adjMatrix[3][4] = 0;
-    adjMatrix[4][4] = 0;
-    adjMatrix[5][4] = 0;
-    adjMatrix[0][5] = 1;
-    adjMatrix[1][5] = 0;
-    adjMatrix[2][5] = 0;
-    adjMatrix[3][5] = 0;
-    adjMatrix[4][5] = 1;
-    adjMatrix[5][5] = 0;
-    // http://edu.i-lo.tarnow.pl/inf/alg/001_search/0137.php - representation of this graph for testing purposes
-    */
  }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
