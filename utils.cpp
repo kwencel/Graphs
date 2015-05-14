@@ -1,4 +1,3 @@
-#include "utils.h"
 #include <iostream>
 #include <random>
 using namespace std;
@@ -13,9 +12,5 @@ int RandomBetween(int begin, int end) {
 }
 
 bool GreaterThanZero(int number) {
-    if (number > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return number > 0;
 }
