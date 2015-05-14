@@ -5,9 +5,7 @@
 #include "adjacency_matrix.h"
 #include "successors_list.h"
 #include "utils.h"
-
 using namespace std;
-
 
 SuccessorsList::SuccessorsList(AdjacencyMatrix Matrix) {
     this->vertexCount = Matrix.getSize();

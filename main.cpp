@@ -1,10 +1,9 @@
-#include <iostream>
+//#include <iostream>
 //#include "adjacency_matrix.h"
 //#include "successors_list.h"
 //#include "list_of_edges.h"
 #include "testing_all.h"
-
-using namespace std;
+//using namespace std;
 
 int main() {
     BeginTestingAll();
