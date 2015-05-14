@@ -35,7 +35,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
  }
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
-    return (find(visited.begin(), visited.end(), vertex) != visited.end());
+    return find(visited.begin(), visited.end(), vertex) != visited.end();
 }
 
 vector<int> AdjacencyMatrix::createInDegArray() {
@@ -73,9 +73,9 @@ void AdjacencyMatrix::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    //for (int item :visited) {
-    //    cout << item;
-    //}
+//    for (int item :visited) {
+//        cout << item << endl;
+//    }
     visited.clear();
 }
 
@@ -117,7 +117,7 @@ void AdjacencyMatrix::sortBFS() {
                         adjInDegArray[vertex] -= 1;
                     }
                 }
-                //cout << vertex;
+//                cout << vertex << endl;
             }
         }
     }

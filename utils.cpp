@@ -8,7 +8,7 @@ mt19937 eng(rd());  // Seed the generator
 
 int RandomBetween(int begin, int end) {
     uniform_int_distribution<> range(begin,end);    // Define the range
-    return (range(eng));
+    return range(eng);
 }
 
 bool GreaterThanZero(int number) {

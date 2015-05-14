@@ -23,7 +23,7 @@ ListOfEdges::ListOfEdges(AdjacencyMatrix Matrix) {
 }
 
 bool ListOfEdges::wasVertexVisited(int vertex) {
-    return !(find(visited.begin(), visited.end(), vertex) == visited.end());
+    return find(visited.begin(), visited.end(), vertex) != visited.end();
 }
 
 vector<int> ListOfEdges::createInDegArray() {
@@ -46,8 +46,8 @@ void ListOfEdges::DFSSortRecur(int vertex) {
         return;
     }
     for (int edge = 0; edge < edgeList.size(); ++edge) {
-        if (edgeList[edge][0] == vertex) {   // [0] - Out [1] - In
-            DFSSortRecur(edgeList[edge][1]);
+        if (edgeList[edge][0] == vertex) {   // [0] - Out
+            DFSSortRecur(edgeList[edge][1]); // [1] - In
         }
     }
     visited.push_front(vertex);
@@ -61,9 +61,9 @@ void ListOfEdges::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    //for (int item :visited) {
-    //    cout << item;
-    //}
+//    for (int item : visited) {
+//        cout << item << endl;
+//    }
     visited.clear();
 }
 
@@ -81,7 +81,7 @@ void ListOfEdges::sortBFS() {
                         edgeList[edge].clear();
                     }
                 }
-                //cout << vertex;
+//                cout << vertex << endl;
             }
         }
     }
@@ -93,7 +93,7 @@ void ListOfEdges::print() {
     cout << "Edge   Out In\n";
     for (int j = 0; j < edgeList.size(); ++j) {
         cout << j << "\t";
-        for (int item: edgeList[j]) {
+        for (int item : edgeList[j]) {
             cout << item << "  ";
         }
         cout << endl;

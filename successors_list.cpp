@@ -30,7 +30,7 @@ SuccessorsList::SuccessorsList(AdjacencyMatrix Matrix) {
 }
 
 bool SuccessorsList::wasVertexVisited(int vertex) {
-    return !(find(visited.begin(), visited.end(), vertex) == visited.end());
+    return find(visited.begin(), visited.end(), vertex) != visited.end();
 }
 
 vector<int> SuccessorsList::createInDegArray() {
@@ -68,9 +68,9 @@ void SuccessorsList::sortDFS(int vertex) {
     for (int i = 0; i < firstVertex; ++i) {
         DFSSortRecur(i);
     }
-    //for (int item :visited) {
-    //    cout << item;
-    //}
+//    for (int item :visited) {
+//        cout << item << endl;
+//    }
     visited.clear();
 }
 
@@ -85,7 +85,7 @@ void SuccessorsList::sortBFS() {
                     listInDegArray[currentSuccessor] -= 1;
                     listInDegArray[vertex] -= 1;
                 }
-                //cout << vertex;
+//                cout << vertex << endl;
             }
         }
     }
@@ -95,9 +95,9 @@ void SuccessorsList::print() {
     cout << "--------- SUCCESSORS LIST ---------- " << endl;
     cout << "------------------------------------ " << endl;
     for (int j = 0; j < adjList.size(); ++j) {
-     /* forward_list<int>::iterator cur;
-        for (cur = adjList[j].begin(); cur != adjList[j].end(); cur++ )
-            cout << *cur << " "; */
+//        forward_list<int>::iterator cur;
+//        for (cur = adjList[j].begin(); cur != adjList[j].end(); cur++ )
+//            cout << *cur << " ";
         cout << j << ":";
         for (int item : adjList[j]) {
             cout << "->" << item;

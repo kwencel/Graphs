@@ -5,32 +5,36 @@
 #include "testing_all.h"
 //using namespace std;
 
+//AdjacencyMatrix Matrix;
+//SuccessorsList List(Matrix);
+//ListOfEdges Edges(Matrix);
+
 int main() {
     BeginTestingAll();
 
-//    matrix.print();
+//    Matrix.print();
 //    cout << endl << "DFS Sort" << endl;
-//	  matrix.sortDFS(0);
+//    Matrix.sortDFS(0);
 //    cout << endl << "BFS Sort" << endl;
-//    matrix.sortBFS();
+//    Matrix.sortBFS();
 //    cout << endl << "DFS Traversal" << endl;
-//    matrix.traversalDFS(0);
+//    Matrix.traversalDFS(0);
 //    cout << endl << "BFS Traversal" << endl;
-//    matrix.traversalBFS(0);
+//    Matrix.traversalBFS(0);
 //    cout << endl << endl;
 //
-//    list.print();
+//    List.print();
 //    cout << endl << "DFS Sort" << endl;
-//    list.sortDFS(0);
+//    List.sortDFS(0);
 //    cout << endl << "BFS Sort" << endl;
-//    list.sortBFS();
+//    List.sortBFS();
 //    cout << endl << endl;
 //
-//    edges.print();
+//    Edges.print();
 //    cout << endl << "DFS Sort" << endl;
-//    edges.sortDFS(0);
+//    Edges.sortDFS(0);
 //    cout << endl << "BFS Sort" << endl;
-//    edges.sortBFS();
+//    Edges.sortBFS();
 
     return 0;
 }

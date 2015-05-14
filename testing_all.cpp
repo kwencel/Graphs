@@ -31,7 +31,7 @@ void BeginTestingAll() {
     }
 
     // Main testing loop
-    for (int vertexAmount = 0; vertexAmount < 10; ++vertexAmount) { // Vertex amount
+    for (int vertexAmount = 0; vertexAmount < 10; ++vertexAmount) { // Vertices amount
 
         int howMany = arrHowMany[vertexAmount];
         cout << "Generating " << howMany << "-vertex graph..." << endl << endl;
