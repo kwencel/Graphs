@@ -16,7 +16,7 @@ private:
     vector<int> createInDegArray();
 
 public:
-    ListOfEdges();
+    ListOfEdges(AdjacencyMatrix Matrix);
     void sortDFS(int vertex);
     void sortBFS();
     void print();
