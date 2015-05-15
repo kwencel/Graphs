@@ -36,16 +36,9 @@ bool SuccessorsList::wasVertexVisited(int vertex) {
 vector<int> SuccessorsList::createInDegArray() {
     listInDegArray.resize(vertexCount);
     for (int vertex = 0; vertex < vertexCount; ++vertex) {
-        int vertexInDeg = 0;
-        for (int row = 0; row < vertexCount; ++row) {
-            for (int currentVertex: adjList[row]) {
-                // Calculate in(vertex) degree [vertex - current vertex]
-                if (currentVertex == vertex) {
-                    ++vertexInDeg;
-                }
-            }
+        for (int currentVertex : adjList[vertex]) {
+            ++listInDegArray[currentVertex];
         }
-        listInDegArray[vertex] = vertexInDeg;
     }
     return listInDegArray;
 }

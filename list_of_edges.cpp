@@ -28,15 +28,9 @@ bool ListOfEdges::wasVertexVisited(int vertex) {
 
 vector<int> ListOfEdges::createInDegArray() {
     edgeInDegArray.resize(vertexCount);
-    for (int vertex = 0; vertex < vertexCount; ++vertex) {
-        int vertexInDeg = 0;
-        for (int edge = 0; edge < edgeList.size(); ++edge) {
-            // Calculate in(vertex) degree [vertex - current vertex]
-            if (edgeList[edge][1] == vertex) { // [1] - "in" degree
-                ++vertexInDeg;
-            }
-        }
-        edgeInDegArray[vertex] = vertexInDeg;
+    for (vector<int> edge : edgeList) {
+        int currentVertex = edge[1];
+        ++edgeInDegArray[currentVertex];
     }
     return edgeInDegArray;
 }
