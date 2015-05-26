@@ -2,15 +2,21 @@
 //#include "adjacency_matrix.h"
 //#include "successors_list.h"
 //#include "list_of_edges.h"
-#include "testing_all.h"
+#include "incidence_list.h"
 //using namespace std;
 
 //AdjacencyMatrix Matrix;
 //SuccessorsList List(Matrix);
 //ListOfEdges Edges(Matrix);
+IncidenceList Hamilton30(9, 50);
+IncidenceList Hamilton70(9, 70);
 
 int main() {
-    BeginTestingAll();
+
+    Hamilton30.print();
+    Hamilton70.print();
+
+//    BeginTestingAll();
 
 //    Matrix.print();
 //    cout << endl << "DFS Sort" << endl;
