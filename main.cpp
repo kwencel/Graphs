@@ -2,19 +2,34 @@
 //#include "adjacency_matrix.h"
 //#include "successors_list.h"
 //#include "list_of_edges.h"
+#include <iostream>
 #include "incidence_list.h"
 //using namespace std;
 
 //AdjacencyMatrix Matrix;
 //SuccessorsList List(Matrix);
 //ListOfEdges Edges(Matrix);
+IncidenceList HamiltonTest(6, 30);
 IncidenceList Hamilton30(9, 50);
 IncidenceList Hamilton70(9, 70);
 
 int main() {
 
+//    HamiltonTest.clearGraph();
+//    HamiltonTest.createCircularGraph(6);
+//    HamiltonTest.makeEdge(0,2);
+//    HamiltonTest.print();
+//    HamiltonTest.removeEdge(2,0);
+//    HamiltonTest.print();
+
     Hamilton30.print();
-    Hamilton70.print();
+    cout << endl;
+    Hamilton30.removeEdge(0, 8);
+
+    if (Hamilton30.findHamiltonianCycle())
+        cout << "Hamiltonian cycle is present.";
+    else
+        cout << "Hamiltonian cycle is not present.";
 
 //    BeginTestingAll();
 
