@@ -62,12 +62,8 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
         int vertex1 = rand() % vertexCount;
         int vertex2 = rand() % vertexCount;
         int vertex3 = rand() % vertexCount;
-        if (vertex1 == vertex2 ||
-            vertex2 == vertex3 ||
-            vertex1 == vertex3 ||
-            isEdgePresent(vertex1, vertex2) ||
-            isEdgePresent(vertex2, vertex3) ||
-            isEdgePresent(vertex1, vertex3)) {
+        if (vertex1 == vertex2 || vertex2 == vertex3 || vertex1 == vertex3 || isEdgePresent(vertex1, vertex2) ||
+            isEdgePresent(vertex2, vertex3) || isEdgePresent(vertex1, vertex3)) {
             continue;
         }
         makeEdge(vertex1, vertex2);
@@ -79,6 +75,47 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
 
 IncidenceList::IncidenceList(int vertexCount, int saturation) {
     generateConnectedGraph(vertexCount, saturation);
+}
+
+void IncidenceList::EulerianRecur(int vertex) {
+    while (!incListCopy[vertex].empty()) {
+        // Choosing neighbouring vertex
+        int adjacentVertex = incListCopy[vertex].front();
+        // Removing edge between vertex and adjacentVertex
+        incListCopy[vertex].remove(adjacentVertex);
+        // Removing edge between adjacentVertex and vertex
+        incListCopy[adjacentVertex].remove(vertex);
+        stack.push_back(adjacentVertex);
+        EulerianRecur(adjacentVertex);
+    }
+    if (!stack.empty()) {
+        visited.push_back(vertex);
+//        cout << vertex << " ";
+        stack.pop_back();
+        return;
+    }
+}
+
+bool IncidenceList::findEulerianCycle(int vertex) {
+    incListCopy = incList;
+    stack.push_back(vertex);
+    EulerianRecur(vertex);
+    cout << endl;
+    bool empty = false;
+    for (auto ver: incListCopy) {
+        if (!ver.empty()) {
+            empty = true;
+        }
+    }
+    if (!(visited.front() == visited.back()) || empty)
+        return false;
+    else {
+        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
+            cout << vertex << "->";
+        }
+        cout << visited.back() << endl;
+        return true;
+    }
 }
 
 bool IncidenceList::findHamiltonianCycleRecur(int vertex) {
