@@ -1,0 +1,7 @@
+#ifndef _SORT_ALGOS_TESTING_SORTING_H_
+#define _SORT_ALGOS_TESTING_SORTING_H_
+
+void BeginTestingSorting();
+
+#endif //_SORT_ALGOS_TESTING_SORTING_H_
+

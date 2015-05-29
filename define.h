@@ -12,4 +12,15 @@
 #define MAX9  4100
 #define MAX10 4600
 
+#define MAX11  20
+#define MAX12  25
+#define MAX13  30
+#define MAX14  35
+#define MAX15  40
+#define MAX16  45
+#define MAX17  50
+#define MAX18  55
+#define MAX19  60
+#define MAX20  65
+
 #endif //_SORT_ALGOS_DEFINE_H_

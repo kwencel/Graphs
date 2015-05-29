@@ -10,7 +10,7 @@
 using namespace std;
 using namespace std::chrono;
 
-void BeginTestingAll() {
+void BeginTestingSorting() {
     typedef std::chrono::high_resolution_clock Clock;
     int arrHowMany[10] = {MAX1, MAX2, MAX3, MAX4, MAX5, MAX6, MAX7, MAX8, MAX9, MAX10};
     vector<string> arrSortName = {"DFS","BFS"};
@@ -26,7 +26,7 @@ void BeginTestingAll() {
         filePath.close();
         ofstream rawFilePath;
         rawFilePath.open(rawFileName.c_str(), ofstream::out | ofstream::trunc);
-        rawFilePath << "Sort type,Data ammount,Time elapsed\n";
+        rawFilePath << "Sort type,Data amount,Time elapsed\n";
         rawFilePath.close();
     }
 

@@ -2,6 +2,7 @@
 #include <ctime>
 #include <algorithm>
 #include "incidence_list.h"
+#include "utils.h"
 
 bool IncidenceList::isEdgePresent(int vertex1, int vertex2) {
     for (int adjacentVertex : incList[vertex1]) {
@@ -59,11 +60,15 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
     // Fill the graph with random triangles until given saturation is reached
     srand((unsigned int) time(NULL));
     while (edgesCount < edgesCountMax) {
-        int vertex1 = rand() % vertexCount;
-        int vertex2 = rand() % vertexCount;
-        int vertex3 = rand() % vertexCount;
-        if (vertex1 == vertex2 || vertex2 == vertex3 || vertex1 == vertex3 || isEdgePresent(vertex1, vertex2) ||
-            isEdgePresent(vertex2, vertex3) || isEdgePresent(vertex1, vertex3)) {
+        int vertex1 = RandomBetween(0, vertexCount - 1);
+        int vertex2 = RandomBetween(0, vertexCount - 1);
+        int vertex3 = RandomBetween(0, vertexCount - 1);
+        if (vertex1 == vertex2 ||
+            vertex2 == vertex3 ||
+            vertex1 == vertex3 ||
+            isEdgePresent(vertex1, vertex2) ||
+            isEdgePresent(vertex2, vertex3) ||
+            isEdgePresent(vertex1, vertex3)) {
             continue;
         }
         makeEdge(vertex1, vertex2);
@@ -75,6 +80,34 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
 
 IncidenceList::IncidenceList(int vertexCount, int saturation) {
     generateConnectedGraph(vertexCount, saturation);
+}
+
+bool IncidenceList::findHamiltonianCycleRecur(int vertex) {
+    visited.push_back(vertex);
+    for (int currentVertex : incList[vertex]) {
+        if (wasVertexVisited(currentVertex)) {
+            continue;
+        }
+        findHamiltonianCycleRecur(currentVertex);
+    }
+    if ((visited.size() == vertexCount) && (isEdgePresent(visited.front(), visited.back()))) {
+        return true;
+    } else {
+        visited.pop_back();
+        return false;
+    }
+}
+
+bool IncidenceList::findHamiltonianCycle() {
+    bool result = findHamiltonianCycleRecur(0);
+    if (result) {
+//        for (int vertex : visited) {
+//            cout << vertex << "->";
+//        }
+//        cout << visited.front() << endl;
+    }
+    visited.clear();
+    return result;
 }
 
 void IncidenceList::EulerianRecur(int vertex) {
@@ -100,50 +133,26 @@ bool IncidenceList::findEulerianCycle(int vertex) {
     incListCopy = incList;
     stack.push_back(vertex);
     EulerianRecur(vertex);
-    cout << endl;
     bool empty = false;
     for (auto ver: incListCopy) {
         if (!ver.empty()) {
             empty = true;
         }
     }
-    if (!(visited.front() == visited.back()) || empty)
+    stack.clear();
+    if (visited.front() != visited.back() || empty) {
+        visited.clear();
         return false;
+    }
     else {
-        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
-            cout << vertex << "->";
-        }
-        cout << visited.back() << endl;
+//        cout << endl;
+//        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
+//            cout << vertex << "->";
+//        }
+//        cout << visited.back() << endl;
+        visited.clear();
         return true;
     }
-}
-
-bool IncidenceList::findHamiltonianCycleRecur(int vertex) {
-    visited.push_back(vertex);
-    for (int currentVertex : incList[vertex]) {
-        if (wasVertexVisited(currentVertex)) {
-            continue;
-        }
-        findHamiltonianCycleRecur(currentVertex);
-    }
-    if ((visited.size() == vertexCount) && (isEdgePresent(visited.front(), visited.back()))) {
-        return true;
-    } else {
-        visited.pop_back();
-        return false;
-    }
-}
-
-bool IncidenceList::findHamiltonianCycle() {
-    bool result = findHamiltonianCycleRecur(0);
-    if (result) {
-        for (int vertex : visited) {
-            cout << vertex << "->";
-        }
-        cout << visited.front() << endl;
-    }
-    visited.clear();
-    return result;
 }
 
 void IncidenceList::print() {
