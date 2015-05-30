@@ -15,7 +15,7 @@ void BeginTestingCycles() {
     vector<string> arrRepName = {"Incidence List 30% Saturation", "Incidence List 70% Saturation"};
 
     // Preparing .txt and .csv files to save logs
-    for (int rep = 0; rep < 2; ++rep) {
+    for (int rep = 0; rep < arrRepName.size(); ++rep) {
         string fileName = "_LOG " + arrRepName[rep] + ".txt";
         string rawFileName = "_EXCEL " + arrRepName[rep] + ".csv";
         ofstream filePath;
@@ -36,7 +36,8 @@ void BeginTestingCycles() {
         IncidenceList Graph30(howMany, 30);
         IncidenceList Graph70(howMany, 70);
 
-        for (int rep = 0; rep < 2; ++rep) {                         // Graph saturation level [0 = 30%, 1 = 70%]
+        for (int rep = 0;
+             rep < arrRepName.size(); ++rep) {                         // Graph saturation level [0 = 30%, 1 = 70%]
 
             string repName = arrRepName[rep];
             string fileName = "_LOG " + arrRepName[rep] + ".txt";
@@ -45,7 +46,7 @@ void BeginTestingCycles() {
             ofstream rawFilePath;
             cout << "----------- " << repName << " -----------" << endl;
 
-            for (int sortType = 0; sortType < 2; ++sortType) {      // Topological sort type
+            for (int sortType = 1; sortType < arrSortName.size(); ++sortType) {      // Topological sort type
 
                 string sortName = arrSortName[sortType];
                 cout << "Searching " << sortName << " in " << howMany << "-vertex graph..." << endl;

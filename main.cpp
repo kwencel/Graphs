@@ -16,10 +16,10 @@ int main() {
         cout << " 2:    Hammiltonian and Eulerian Cycles searching   " << endl;
         cout << "----------------------------------------------------" << endl;
         cout << "Press any other key to run all tests or 'q' to quit." << endl << endl;
-        char choice;
+        char choice = '2';
         cout << "Your choice: ";
-        cin >> choice;
-        cout << endl;
+//        cin >> choice;
+//        cout << endl;
 
         switch (choice) {
             case '1':
@@ -27,6 +27,7 @@ int main() {
                 break;
             case '2':
                 BeginTestingCycles();
+                getchar();
                 break;
             case 'q':
                 exit(0);
@@ -69,13 +70,15 @@ int main() {
 //    Edges.sortBFS();
 //
 //    if (Graph30.findHamiltonianCycle())
-//        cout << "Hamiltonian cycle is present.";
+//        cout << "Hamiltonian cycle is present." << endl;
 //    else
-//        cout << "Hamiltonian cycle is not present.";
+//        cout << "Hamiltonian cycle is not present." << endl;
 //
 //    if (Graph30.findEulerianCycle(0))
-//        cout << "Eulerian cycle is present.";
+//        cout << "Eulerian cycle is present." << endl;
 //    else
-//        cout << "Eulerian cycle is not present.";
+//        cout << "Eulerian cycle is not present." << endl;
+//
+//    return 0;
 
 }

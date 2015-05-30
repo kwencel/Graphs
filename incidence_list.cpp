@@ -4,6 +4,8 @@
 #include "incidence_list.h"
 #include "utils.h"
 
+extern mt19937 eng;
+
 bool IncidenceList::isEdgePresent(int vertex1, int vertex2) {
     for (int adjacentVertex : incList[vertex1]) {
         if (adjacentVertex == vertex2) {
@@ -15,15 +17,28 @@ bool IncidenceList::isEdgePresent(int vertex1, int vertex2) {
 
 void IncidenceList::makeEdge(int vertex1, int vertex2) {
     if (!isEdgePresent(vertex1, vertex2)) {
-        incList[vertex1].push_front(vertex2);
-        incList[vertex2].push_front(vertex1);
+        incList[vertex1].push_back(vertex2);
+        incList[vertex2].push_back(vertex1);
     }
 }
 
 void IncidenceList::removeEdge(int vertex1, int vertex2) {
     if (isEdgePresent(vertex1, vertex2)) {
-        incList[vertex1].remove(vertex2);
-        incList[vertex2].remove(vertex1);
+        vector<int>::iterator it;
+        it = find(incList[vertex1].begin(), incList[vertex1].end(), vertex2);
+        incList[vertex1].erase(it);
+        it = find(incList[vertex2].begin(), incList[vertex2].end(), vertex1);
+        incList[vertex2].erase(it);
+    }
+}
+
+void IncidenceList::removeEdge(int vertex1, int vertex2, vector<vector<int>> &list) {
+    if (isEdgePresent(vertex1, vertex2)) {
+        vector<int>::iterator it;
+        it = find(list[vertex1].begin(), list[vertex1].end(), vertex2);
+        list[vertex1].erase(it);
+        it = find(list[vertex2].begin(), list[vertex2].end(), vertex1);
+        list[vertex2].erase(it);
     }
 }
 
@@ -76,6 +91,9 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
         makeEdge(vertex3, vertex1);
         edgesCount = edgesCount + 3;
     }
+    for (int list = 0; list < vertexCount; ++list) {
+        shuffle(incList[list].begin(), incList[list].end(), eng);
+    }
 }
 
 IncidenceList::IncidenceList(int vertexCount, int saturation) {
@@ -115,15 +133,12 @@ void IncidenceList::EulerianRecur(int vertex) {
         // Choosing neighbouring vertex
         int adjacentVertex = incListCopy[vertex].front();
         // Removing edge between vertex and adjacentVertex
-        incListCopy[vertex].remove(adjacentVertex);
-        // Removing edge between adjacentVertex and vertex
-        incListCopy[adjacentVertex].remove(vertex);
+        removeEdge(adjacentVertex, vertex, incListCopy);
         stack.push_back(adjacentVertex);
         EulerianRecur(adjacentVertex);
     }
     if (!stack.empty()) {
         visited.push_back(vertex);
-//        cout << vertex << " ";
         stack.pop_back();
         return;
     }
@@ -145,11 +160,11 @@ bool IncidenceList::findEulerianCycle(int vertex) {
         return false;
     }
     else {
-//        cout << endl;
-//        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
-//            cout << vertex << "->";
-//        }
-//        cout << visited.back() << endl;
+        cout << endl;
+        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
+            cout << visited[vertex] << "->";
+        }
+        cout << visited.back() << endl;
         visited.clear();
         return true;
     }

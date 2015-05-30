@@ -7,8 +7,8 @@ using namespace std;
 
 class IncidenceList {
 private:
-    vector<forward_list<int>> incList;
-    vector<forward_list<int>> incListCopy;
+    vector<vector<int>> incList;
+    vector<vector<int>> incListCopy;
     vector<int> visited;
     vector<int> stack;
     int vertexCount;
@@ -16,6 +16,8 @@ private:
 
     bool wasVertexVisited(int vertex);
     bool findHamiltonianCycleRecur(int vertex);
+
+    void removeEdge(int vertex1, int vertex2, vector<vector<int>> &list);
 
     void EulerianRecur(int vertex);
 
