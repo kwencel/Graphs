@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ctime>
 #include <algorithm>
 #include "incidence_list.h"
 #include "utils.h"
@@ -128,14 +127,14 @@ bool IncidenceList::findHamiltonianCycle() {
     return result;
 }
 
-void IncidenceList::EulerianRecur(int vertex) {
+void IncidenceList::findEulerianCycleRecur(int vertex) {
     while (!incListCopy[vertex].empty()) {
         // Choosing neighbouring vertex
         int adjacentVertex = incListCopy[vertex].front();
         // Removing edge between vertex and adjacentVertex
         removeEdge(adjacentVertex, vertex, incListCopy);
         stack.push_back(adjacentVertex);
-        EulerianRecur(adjacentVertex);
+        findEulerianCycleRecur(adjacentVertex);
     }
     if (!stack.empty()) {
         visited.push_back(vertex);
@@ -147,7 +146,7 @@ void IncidenceList::EulerianRecur(int vertex) {
 bool IncidenceList::findEulerianCycle(int vertex) {
     incListCopy = incList;
     stack.push_back(vertex);
-    EulerianRecur(vertex);
+    findEulerianCycleRecur(vertex);
     bool empty = false;
     for (auto ver: incListCopy) {
         if (!ver.empty()) {
@@ -160,11 +159,11 @@ bool IncidenceList::findEulerianCycle(int vertex) {
         return false;
     }
     else {
-        cout << endl;
-        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
-            cout << visited[vertex] << "->";
-        }
-        cout << visited.back() << endl;
+//        cout << endl;
+//        for (vertex = 0; vertex < visited.size() - 1; ++vertex) {
+//            cout << visited[vertex] << "->";
+//        }
+//        cout << visited.back() << endl;
         visited.clear();
         return true;
     }

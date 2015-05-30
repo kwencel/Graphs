@@ -4,9 +4,8 @@
 #include <vector>
 #include "define.h"
 #include "incidence_list.h"
-
 using namespace std;
-using namespace std::chrono;
+using namespace chrono;
 
 void BeginTestingCycles() {
     typedef std::chrono::high_resolution_clock Clock;
@@ -32,12 +31,12 @@ void BeginTestingCycles() {
     for (int vertexAmount = 0; vertexAmount < 10; ++vertexAmount) { // Vertices amount
 
         int howMany = arrHowMany[vertexAmount];
-        cout << "Generating " << howMany << "-vertex graph..." << endl << endl;
+        cout << "Generating 30% saturated " << howMany << "-vertex graph..." << endl;
         IncidenceList Graph30(howMany, 30);
+        cout << "Generating 70% saturated " << howMany << "-vertex graph..." << endl << endl;
         IncidenceList Graph70(howMany, 70);
 
-        for (int rep = 0;
-             rep < arrRepName.size(); ++rep) {                         // Graph saturation level [0 = 30%, 1 = 70%]
+        for (int rep = 0; rep < arrRepName.size(); ++rep) { // Graph saturation level [0 = 30%, 1 = 70%]
 
             string repName = arrRepName[rep];
             string fileName = "_LOG " + arrRepName[rep] + ".txt";
@@ -46,7 +45,7 @@ void BeginTestingCycles() {
             ofstream rawFilePath;
             cout << "----------- " << repName << " -----------" << endl;
 
-            for (int sortType = 1; sortType < arrSortName.size(); ++sortType) {      // Topological sort type
+            for (int sortType = 0; sortType < arrSortName.size(); ++sortType) { // Topological sort type
 
                 string sortName = arrSortName[sortType];
                 cout << "Searching " << sortName << " in " << howMany << "-vertex graph..." << endl;
@@ -88,7 +87,7 @@ void BeginTestingCycles() {
                 cout << "Time elapsed: " << duration.count() / 1000.0 << " seconds." << endl;
 
                 filePath.open(fileName.c_str(), ofstream::out | ofstream::app);   // Append to file
-                filePath << "Completed searching " << sortName << "\t" << repName << " in " << howMany <<
+                filePath << "Completed searching " << sortName << "\t" << " in " << repName << " " << howMany <<
                 "-vertex graph in " << duration.count() / 1000.0 << " seconds." << endl;
                 filePath.close();
                 rawFilePath.open(rawFileName.c_str(), ofstream::out | ofstream::app);

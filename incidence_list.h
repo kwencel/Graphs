@@ -17,9 +17,8 @@ private:
     bool wasVertexVisited(int vertex);
     bool findHamiltonianCycleRecur(int vertex);
 
+    void findEulerianCycleRecur(int vertex);
     void removeEdge(int vertex1, int vertex2, vector<vector<int>> &list);
-
-    void EulerianRecur(int vertex);
 
 public:
     IncidenceList(int vertexCount, int saturation);
@@ -29,7 +28,6 @@ public:
     void makeEdge(int vertex1, int vertex2);
     void removeEdge(int vertex1, int vertex2);
     bool findHamiltonianCycle();
-
     bool findEulerianCycle(int vertex);
     void clearGraph();
     void print();

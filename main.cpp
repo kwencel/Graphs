@@ -1,6 +1,7 @@
 #include <iostream>
 #include "testing_sorting.h"
 #include "testing_cycles.h"
+//#include "incidence_list.h"
 //#include "adjacency_matrix.h"
 //#include "successors_list.h"
 //#include "list_of_edges.h"
@@ -16,10 +17,10 @@ int main() {
         cout << " 2:    Hammiltonian and Eulerian Cycles searching   " << endl;
         cout << "----------------------------------------------------" << endl;
         cout << "Press any other key to run all tests or 'q' to quit." << endl << endl;
-        char choice = '2';
+        char choice;
         cout << "Your choice: ";
-//        cin >> choice;
-//        cout << endl;
+        cin >> choice;
+        cout << endl;
 
         switch (choice) {
             case '1':
