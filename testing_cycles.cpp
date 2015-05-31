@@ -18,6 +18,9 @@ void BeginTestingCycles(bool mode) {
     }
     vector<string> arrSortName = {"Hamiltonian Cycle", "Eulerian Cycle"};
     vector<string> arrRepName = {"Incidence List 30% Saturation", "Incidence List 70% Saturation"};
+    if (mode) {
+        arrRepName[0] = "Incidence List 50% Saturation";
+    }
     string fileName;
     string rawFileName;
 
@@ -44,17 +47,26 @@ void BeginTestingCycles(bool mode) {
     for (int vertexAmount = 0; vertexAmount < 10; ++vertexAmount) { // Vertices amount
 
         int howMany = arrHowMany[vertexAmount];
-        cout << "Generating 30% saturated " << howMany << "-vertex graph..." << endl;
-        IncidenceList Graph30(howMany, 30);
-        cout << "Generating 70% saturated " << howMany << "-vertex graph..." << endl << endl;
-        IncidenceList Graph70(howMany, 70);
 
+        if (!mode)
+            cout << "Generating 30% saturated " << howMany << "-vertex graph..." << endl;
+        IncidenceList Graph30(howMany, 30);
+        if (!mode)
+            cout << "Generating 70% saturated " << howMany << "-vertex graph..." << endl;
+        IncidenceList Graph70(howMany, 70);
+        if (mode)
+            cout << "Generating 50% saturated " << howMany << "-vertex graph..." << endl;
+        IncidenceList Graph50(howMany, 50);
+        cout << endl;
         if (mode) {
-            Graph30.isolateVertex(RandomBetween(0, Graph30.getSize() - 1));
-            Graph70.isolateVertex(RandomBetween(0, Graph70.getSize() - 1));
+            Graph30.clearGraph();
+            Graph70.clearGraph();
+            Graph50.isolateVertex(RandomBetween(0, Graph50.getSize() - 1));
+        } else {
+            Graph50.clearGraph();
         }
 
-        for (int rep = 0; rep < arrRepName.size(); ++rep) { // Graph saturation level [0 = 30%, 1 = 70%]
+        for (int rep = 0; rep < arrRepName.size() - mode; ++rep) { // Graph saturation level [0 = 30%, 1 = 70%]
             if (mode) {
                 fileName = "_LOG Hamilton Isolated " + arrRepName[rep] + ".txt";
                 rawFileName = "_EXCEL Hamilton Isolated " + arrRepName[rep] + ".csv";
@@ -79,7 +91,11 @@ void BeginTestingCycles(bool mode) {
                     case 0: // Hamiltonian Cycle
                         switch (rep) {
                             case 0:
-                                Graph30.findHamiltonianCycle();
+                                if (mode) {
+                                    Graph50.findHamiltonianCycle();
+                                } else {
+                                    Graph30.findHamiltonianCycle();
+                                }
                                 break;
                             case 1:
                                 Graph70.findHamiltonianCycle();

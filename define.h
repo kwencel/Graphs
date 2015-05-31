@@ -23,15 +23,15 @@
 #define MAX19  70
 #define MAX20  75
 
-#define MAX21  8
-#define MAX22  9
-#define MAX23  10
-#define MAX24  11
-#define MAX25  12
-#define MAX26  13
-#define MAX27  14
-#define MAX28  15
-#define MAX29  16
-#define MAX30  17
+#define MAX21  10
+#define MAX22  11
+#define MAX23  12
+#define MAX24  13
+#define MAX25  14
+#define MAX26  15
+#define MAX27  16
+#define MAX28  17
+#define MAX29  18
+#define MAX30  19
 
 #endif //_SORT_ALGOS_DEFINE_H_
