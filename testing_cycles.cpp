@@ -4,19 +4,32 @@
 #include <vector>
 #include "define.h"
 #include "incidence_list.h"
+#include "utils.h"
 using namespace std;
 using namespace chrono;
 
-void BeginTestingCycles() {
-    typedef std::chrono::high_resolution_clock Clock;
-    int arrHowMany[10] = {MAX11, MAX12, MAX13, MAX14, MAX15, MAX16, MAX17, MAX18, MAX19, MAX20};
+void BeginTestingCycles(bool mode) {
+    typedef high_resolution_clock Clock;
+    vector<int> arrHowMany;
+    if (mode) {
+        arrHowMany = {MAX21, MAX22, MAX23, MAX24, MAX25, MAX26, MAX27, MAX28, MAX29, MAX30};
+    } else {
+        arrHowMany = {MAX11, MAX12, MAX13, MAX14, MAX15, MAX16, MAX17, MAX18, MAX19, MAX20};
+    }
     vector<string> arrSortName = {"Hamiltonian Cycle", "Eulerian Cycle"};
     vector<string> arrRepName = {"Incidence List 30% Saturation", "Incidence List 70% Saturation"};
+    string fileName;
+    string rawFileName;
 
     // Preparing .txt and .csv files to save logs
     for (int rep = 0; rep < arrRepName.size(); ++rep) {
-        string fileName = "_LOG " + arrRepName[rep] + ".txt";
-        string rawFileName = "_EXCEL " + arrRepName[rep] + ".csv";
+        if (mode) {
+            fileName = "_LOG Hamilton Isolated " + arrRepName[rep] + ".txt";
+            rawFileName = "_EXCEL Hamilton Isolated " + arrRepName[rep] + ".csv";
+        } else {
+            fileName = "_LOG " + arrRepName[rep] + ".txt";
+            rawFileName = "_EXCEL " + arrRepName[rep] + ".csv";
+        }
         ofstream filePath;
         filePath.open(fileName.c_str(), ofstream::out | ofstream::trunc); // Clear file
         filePath << "----------- " << arrRepName[rep] << " -----------" << endl;
@@ -36,16 +49,26 @@ void BeginTestingCycles() {
         cout << "Generating 70% saturated " << howMany << "-vertex graph..." << endl << endl;
         IncidenceList Graph70(howMany, 70);
 
+        if (mode) {
+            Graph30.isolateVertex(RandomBetween(0, Graph30.getSize() - 1));
+            Graph70.isolateVertex(RandomBetween(0, Graph70.getSize() - 1));
+        }
+
         for (int rep = 0; rep < arrRepName.size(); ++rep) { // Graph saturation level [0 = 30%, 1 = 70%]
+            if (mode) {
+                fileName = "_LOG Hamilton Isolated " + arrRepName[rep] + ".txt";
+                rawFileName = "_EXCEL Hamilton Isolated " + arrRepName[rep] + ".csv";
+            } else {
+                fileName = "_LOG " + arrRepName[rep] + ".txt";
+                rawFileName = "_EXCEL " + arrRepName[rep] + ".csv";
+            }
 
             string repName = arrRepName[rep];
-            string fileName = "_LOG " + arrRepName[rep] + ".txt";
-            string rawFileName = "_EXCEL " + arrRepName[rep] + ".csv";
             ofstream filePath;
             ofstream rawFilePath;
             cout << "----------- " << repName << " -----------" << endl;
 
-            for (int sortType = 0; sortType < arrSortName.size(); ++sortType) { // Topological sort type
+            for (int sortType = 0; sortType < arrSortName.size() - mode; ++sortType) { // Type of cycle to detect
 
                 string sortName = arrSortName[sortType];
                 cout << "Searching " << sortName << " in " << howMany << "-vertex graph..." << endl;

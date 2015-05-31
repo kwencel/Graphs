@@ -15,7 +15,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
     this->vertexCount = vertexCount;
     this->saturation = saturation;
     // Resize the vector to be V x V matrix
-    adjMatrix.resize(vertexCount, vector<int>(vertexCount, 0));
+    adjMatrix.resize((unsigned long) vertexCount, vector<int>((unsigned long) vertexCount, 0));
     // Calculate the maximum number of edges/links (ones in the matrix)
     int linksCountMax = ((vertexCount * (vertexCount - 1)) / 2) * saturation / 100;
     int linksCount = 0;

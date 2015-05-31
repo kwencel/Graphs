@@ -34,7 +34,7 @@ bool SuccessorsList::wasVertexVisited(int vertex) {
 }
 
 vector<int> SuccessorsList::createInDegArray() {
-    listInDegArray.resize(vertexCount);
+    listInDegArray.resize((unsigned long) vertexCount);
     for (int vertex = 0; vertex < vertexCount; ++vertex) {
         int vertexInDeg = 0;
         for (int row = 0; row < vertexCount; ++row) {

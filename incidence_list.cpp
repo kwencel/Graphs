@@ -41,6 +41,12 @@ void IncidenceList::removeEdge(int vertex1, int vertex2, vector<vector<int>> &li
     }
 }
 
+void IncidenceList::isolateVertex(int vertex) {
+    for (unsigned long i = incList[vertex].size(); i > 0; --i) {
+        removeEdge(vertex, incList[vertex].front());
+    }
+}
+
 void IncidenceList::clearGraph() {
     incList.clear();
 }
@@ -52,7 +58,7 @@ bool IncidenceList::wasVertexVisited(int vertex) {
 void IncidenceList::createCircularGraph(int vertexCount) {
     this->vertexCount = vertexCount;
     this->saturation = saturation;
-    incList.resize(vertexCount);
+    incList.resize((unsigned long) vertexCount);
     // Setting list's iterator on beginning
     for (int vertex = 0; vertex < vertexCount - 1; ++vertex) {
         makeEdge(vertex, vertex + 1);
@@ -72,7 +78,6 @@ void IncidenceList::generateConnectedGraph(int vertexCount, int saturation) {
     int edgesCountMax = ((vertexCount * (vertexCount - 1)) / 2) * saturation / 100;
     int edgesCount = vertexCount;
     // Fill the graph with random triangles until given saturation is reached
-    srand((unsigned int) time(NULL));
     while (edgesCount < edgesCountMax) {
         int vertex1 = RandomBetween(0, vertexCount - 1);
         int vertex2 = RandomBetween(0, vertexCount - 1);

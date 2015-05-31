@@ -8,10 +8,10 @@
 #include "list_of_edges.h"
 
 using namespace std;
-using namespace std::chrono;
+using namespace chrono;
 
 void BeginTestingSorting() {
-    typedef std::chrono::high_resolution_clock Clock;
+    typedef high_resolution_clock Clock;
     int arrHowMany[10] = {MAX1, MAX2, MAX3, MAX4, MAX5, MAX6, MAX7, MAX8, MAX9, MAX10};
     vector<string> arrSortName = {"DFS","BFS"};
     vector<string> arrRepName = {"Adjacency Matrix", "Successors List", "List of Edges"};
@@ -39,7 +39,7 @@ void BeginTestingSorting() {
         SuccessorsList List(Matrix);
         ListOfEdges Edges(Matrix);
 
-        for (int rep = 0; rep < 3; ++rep) {                         // Graph representation type
+        for (int rep = 0; rep < 3; ++rep) { // Graph representation type
 
             string repName = arrRepName[rep];
             string fileName = "_LOG " + arrRepName[rep] + ".txt";
@@ -48,7 +48,7 @@ void BeginTestingSorting() {
             ofstream rawFilePath;
             cout << "----------- " << repName << " -----------" << endl;
 
-            for (int sortType = 0; sortType < 2; ++sortType) {      // Topological sort type
+            for (int sortType = 0; sortType < 2; ++sortType) {  // Topological sort type
 
                 string sortName = arrSortName[sortType];
                 cout << "Sorting " << sortName << " " << howMany << "-vertex graph..." << endl;

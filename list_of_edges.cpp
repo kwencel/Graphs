@@ -27,7 +27,7 @@ bool ListOfEdges::wasVertexVisited(int vertex) {
 }
 
 vector<int> ListOfEdges::createInDegArray() {
-    edgeInDegArray.resize(vertexCount);
+    edgeInDegArray.resize((unsigned long) vertexCount);
     for (int vertex = 0; vertex < vertexCount; ++vertex) {
         int vertexInDeg = 0;
         for (int edge = 0; edge < edgeList.size(); ++edge) {

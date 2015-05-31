@@ -15,6 +15,7 @@ int main() {
         cout << "----------------------------------------------------" << endl;
         cout << " 1:    Topological sorting algorithms               " << endl;
         cout << " 2:    Hammiltonian and Eulerian Cycles searching   " << endl;
+        cout << " 3:    Nonexistent Hammiltonian Cycles searching    " << endl;
         cout << "----------------------------------------------------" << endl;
         cout << "Press any other key to run all tests or 'q' to quit." << endl << endl;
         char choice;
@@ -27,14 +28,17 @@ int main() {
                 BeginTestingSorting();
                 break;
             case '2':
-                BeginTestingCycles();
-                getchar();
+                BeginTestingCycles(0);
+                break;
+            case '3':
+                BeginTestingCycles(1);
                 break;
             case 'q':
                 exit(0);
             default:
                 BeginTestingSorting();
-                BeginTestingCycles();
+                BeginTestingCycles(0);
+                BeginTestingCycles(1);
                 break;
         }
         cout << string(5, '\n');
