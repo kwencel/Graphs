@@ -5,6 +5,7 @@
 #include "adjacency_matrix.h"
 #include "successors_list.h"
 #include "utils.h"
+
 using namespace std;
 
 SuccessorsList::SuccessorsList(AdjacencyMatrix Matrix) {
@@ -15,7 +16,7 @@ SuccessorsList::SuccessorsList(AdjacencyMatrix Matrix) {
         // Setting list's iterator on beginning
         currentVertex = succList.before_begin();
         // Accessing the adjacency matrix and making a temporary copy
-        vector<vector<int>> adjMatrix = Matrix.getAdjMatrix();
+        vector <vector<int>> adjMatrix = Matrix.getAdjMatrix();
         for (int column = 0; column < vertexCount; ++column) {
             if ((adjMatrix[column][row]) == 1) {
                 // Adding vertex to list

@@ -4,11 +4,12 @@
 #include "adjacency_matrix.h"
 #include "list_of_edges.h"
 #include "utils.h"
+
 using namespace std;
 
 ListOfEdges::ListOfEdges(AdjacencyMatrix Matrix) {
     vertexCount = Matrix.getSize();
-    vector<vector<int>> adjMatrix = Matrix.getAdjMatrix();
+    vector <vector<int>> adjMatrix = Matrix.getAdjMatrix();
     vector<int> edge;
     for (int row = 0; row < vertexCount; ++row) {
         for (int column = 0; column < vertexCount; ++column) {

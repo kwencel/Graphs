@@ -5,6 +5,7 @@
 #include "define.h"
 #include "incidence_list.h"
 #include "utils.h"
+
 using namespace std;
 using namespace chrono;
 
@@ -16,8 +17,8 @@ void BeginTestingCycles(bool mode) {
     } else {
         arrHowMany = {MAX11, MAX12, MAX13, MAX14, MAX15, MAX16, MAX17, MAX18, MAX19, MAX20};
     }
-    vector<string> arrSortName = {"Hamiltonian Cycle", "Eulerian Cycle"};
-    vector<string> arrRepName = {"Incidence List 30% Saturation", "Incidence List 70% Saturation"};
+    vector <string> arrSortName = {"Hamiltonian Cycle", "Eulerian Cycle"};
+    vector <string> arrRepName = {"Incidence List 30% Saturation", "Incidence List 70% Saturation"};
     if (mode) {
         arrRepName[0] = "Incidence List 50% Saturation";
     }

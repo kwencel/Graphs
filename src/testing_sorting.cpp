@@ -13,8 +13,8 @@ using namespace chrono;
 void BeginTestingSorting() {
     typedef high_resolution_clock Clock;
     int arrHowMany[10] = {MAX1, MAX2, MAX3, MAX4, MAX5, MAX6, MAX7, MAX8, MAX9, MAX10};
-    vector<string> arrSortName = {"DFS","BFS"};
-    vector<string> arrRepName = {"Adjacency Matrix", "Successors List", "List of Edges"};
+    vector <string> arrSortName = {"DFS", "BFS"};
+    vector <string> arrRepName = {"Adjacency Matrix", "Successors List", "List of Edges"};
 
     // Preparing .txt and .csv files to save logs
     for (int rep = 0; rep < 3; ++rep) {
@@ -67,7 +67,8 @@ void BeginTestingSorting() {
                             case 2:
                                 Edges.sortDFS(0);
                                 break;
-                            default:break;
+                            default:
+                                break;
                         }
                         break;
                     case 1: // BFS
@@ -81,10 +82,12 @@ void BeginTestingSorting() {
                             case 2:
                                 Edges.sortBFS();
                                 break;
-                            default:break;
+                            default:
+                                break;
                         }
                         break;
-                    default:break;
+                    default:
+                        break;
                 }
 
                 auto end = Clock::now();
@@ -93,7 +96,8 @@ void BeginTestingSorting() {
                 cout << "Time elapsed: " << duration.count() / 1000.0 << " seconds." << endl;
 
                 filePath.open(fileName.c_str(), ofstream::out | ofstream::app);   // Append to file
-                filePath << "Completed sorting " << sortName << " " << repName << " " << howMany << "-vertex graph in " << duration.count() / 1000.0 << " seconds." << endl;
+                filePath << "Completed sorting " << sortName << " " << repName << " " << howMany <<
+                "-vertex graph in " << duration.count() / 1000.0 << " seconds." << endl;
                 filePath.close();
                 rawFilePath.open(rawFileName.c_str(), ofstream::out | ofstream::app);
                 rawFilePath << sortName << "," << howMany << "," << duration.count() / 1000.0 << endl;

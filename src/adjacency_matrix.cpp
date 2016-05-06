@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "adjacency_matrix.h"
 #include "utils.h"
+
 using namespace std;
 
 /* The vector of vector (matrix) indexing is the following:
@@ -32,7 +33,7 @@ AdjacencyMatrix::AdjacencyMatrix(int vertexCount, int saturation) {
             ++linksCount;
         }
     }
- }
+}
 
 bool AdjacencyMatrix::wasVertexVisited(int vertex) {
     return find(visited.begin(), visited.end(), vertex) != visited.end();
@@ -175,7 +176,7 @@ int AdjacencyMatrix::getSaturation() {
     return saturation;
 }
 
-vector<vector<int>> AdjacencyMatrix::getAdjMatrix() {
+vector <vector<int>> AdjacencyMatrix::getAdjMatrix() {
     return adjMatrix;
 }
 
