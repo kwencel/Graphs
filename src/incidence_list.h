@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <forward_list>
+
 using namespace std;
 
 class IncidenceList {
@@ -15,23 +16,36 @@ private:
     int saturation;
 
     bool wasVertexVisited(int vertex);
+
     bool findHamiltonianCycleRecur(int vertex);
+
     void findEulerianCycleRecur(int vertex);
-    void removeEdge(int vertex1, int vertex2, vector<vector<int>> &list);
+
+    void removeEdge(int vertex1, int vertex2, vector<vector<int>>& list);
 
 public:
     IncidenceList(int vertexCount, int saturation);
+
     void createCircularGraph(int vertexCount);
+
     void generateConnectedGraph(int vertexCount, int saturation);
+
     bool isEdgePresent(int vertex1, int vertex2);
+
     void makeEdge(int vertex1, int vertex2);
+
     void removeEdge(int vertex1, int vertex2);
 
     void isolateVertex(int vertex);
+
     bool findHamiltonianCycle();
+
     bool findEulerianCycle(int vertex);
+
     void clearGraph();
+
     void print();
+
     int getSize();
 };
 

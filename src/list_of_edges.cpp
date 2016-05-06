@@ -4,6 +4,7 @@
 #include "adjacency_matrix.h"
 #include "list_of_edges.h"
 #include "utils.h"
+
 using namespace std;
 
 ListOfEdges::ListOfEdges(AdjacencyMatrix Matrix) {

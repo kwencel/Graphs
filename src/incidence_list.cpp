@@ -31,7 +31,7 @@ void IncidenceList::removeEdge(int vertex1, int vertex2) {
     }
 }
 
-void IncidenceList::removeEdge(int vertex1, int vertex2, vector<vector<int>> &list) {
+void IncidenceList::removeEdge(int vertex1, int vertex2, vector<vector<int>>& list) {
     if (isEdgePresent(vertex1, vertex2)) {
         vector<int>::iterator it;
         it = find(list[vertex1].begin(), list[vertex1].end(), vertex2);
