@@ -26,9 +26,8 @@ That gives 3 * 10 * 2 = 60 measurements for one algorithm. That's a lot of testi
 Testing results will be stored in multiple files for your convenience. You'll find .txt files that are reading-friendly
 and .csv files for an easy import to your favourite spreadsheet application.
 
-***WARNING***
-Running the program again (even before starting any test) will revmove files storing previous results. Please move these files
-when the program finishes testing.
+**WARNING**
+Running the program again (even before starting any test) will remove the files storing previous results. Please move these files from the *bin* folder when the program finishes testing.
 
 # Configuration
 You can adjust vertices amount used for testing purposes in *define.h* file. You have to do this before compiling the program.
