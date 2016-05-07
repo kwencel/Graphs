@@ -1,5 +1,5 @@
 # Graphs
-An application for testing the speed of topological sorting and cycle finding algorithms in DAGs
+An application for testing the speed of topological sorting and cycle finding algorithms in DAGs.
 
 *DAG - Directed Acyclic Graph*
 
