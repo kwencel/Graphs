@@ -10,8 +10,8 @@ A C++ application for testing the speed of topological sorting and cycle finding
 ```
 git clone https://github.com/daktyl/Graphs.git
 cd Graphs/
-$ cmake .
-$ make
+cmake .
+make
 ```
 
 # Testing procedure
