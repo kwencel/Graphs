@@ -8,16 +8,18 @@ A C++ application for testing the speed of topological sorting and cycle finding
 
 # Build instructions
 ```
+git clone https://github.com/daktyl/Graphs.git
+cd Graphs/
 $ cmake .
 $ make
 ```
 
 # Testing procedure
-The program will test the speed of DFS and BFS-like topological sorting and Hamiltonian and Eulerian cycle finding
+The program will test the speed of DFS and BFS-like topological sorting and Hamiltonian and Eulerian cycle finding algorithms
 on multiple graph representations - adjacency matrix, list of edges and successors list.
 
 Each representation will be tested 10 times - every time on a bigger graph.
-What is more, each graph instance will be tested in two variants - with 30% and 70% saturation.
+Moreover, each graph instance will be tested in two variants - with 30% and 70% saturation.
 By saturation I mean a ratio of edges present in the graph to all possible edges in the graph (clique).
 
 That gives 3 * 10 * 2 = 60 measurements for one algorithm. That's a lot of testing!
@@ -30,10 +32,10 @@ and .csv files for an easy import to your favourite spreadsheet application.
 Running the program again (even before starting any test) will remove the files storing previous results. Please move these files from the *bin* folder when the program finishes testing.
 
 # Configuration
-You can adjust vertices amount used for testing purposes in *define.h* file. You have to do this before compiling the program.
+You can adjust the vertices amount used for testing purposes in *define.h* file. You have to do this before compiling the program.
 
 # How to use the program?
-Use numeric keys to choose the appropriate test.
+Use numeric keys to choose an appropriate test.
 
 **1: Topological sorting algorithms**
 
