@@ -35,7 +35,7 @@ Running the program again (even before starting any test) will remove the files 
 You can adjust the vertices amount used for testing purposes in *define.h* file. You have to do this before compiling the program.
 
 # How to use the program?
-Use numeric keys to choose an appropriate test.
+Use the numeric keys to choose an appropriate test.
 
 **1: Topological sorting algorithms**
 
